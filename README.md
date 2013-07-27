@@ -19,3 +19,4 @@ facilitates collaboration.
 
 * Can find a user
 * Can assign a role to the user.
+
