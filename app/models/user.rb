@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :uid
+  attr_accessible :name, :provider, :uid, :email, :image
 
   has_and_belongs_to_many :roles
 
@@ -8,7 +8,14 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.image = auth["info"]["image"]
+
     end
+  end
+
+  def has_role?(role_name)
+    (user.roles.map &:key).select { |k| k == role_name }
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727232637) do
+ActiveRecord::Schema.define(:version => 20130727233824) do
 
   create_table "roles", :force => true do |t|
     t.string   "key"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20130727232637) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "email"
+    t.string   "image"
   end
 
 end
