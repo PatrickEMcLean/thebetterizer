@@ -1,4 +1,5 @@
 class Work < ActiveRecord::Base
+  attr_accessor :temp_text, :temp_document
   attr_accessible :user_id,
     :coach_id,
     :student_audience,
@@ -18,4 +19,6 @@ class Work < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :coach
+
+
 end

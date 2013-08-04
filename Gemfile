@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
-# To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'google-api-client'
 
 
 
