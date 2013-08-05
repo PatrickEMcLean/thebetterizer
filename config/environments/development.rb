@@ -34,4 +34,6 @@ Betterizer::Application.configure do
 
   # Expands the lines which load the assets
   # config.assets.debug = true
+  config.service_account_id = "960016567704-ilq2d2fl27v584ekmd0qddpdt2f6oknp@developer.gserviceaccount.com"
+  config.admin_emails = ["helm.scott@gmail.com"]
 end
