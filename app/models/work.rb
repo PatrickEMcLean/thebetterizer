@@ -14,8 +14,11 @@ class Work < ActiveRecord::Base
     :coach_not_so_well,
     :coach_comment,
     :document_url,
+    :google_file_id,
     :youtube_url,
-    :approved
+    :approved,
+    :temp_text,
+    :temp_document
 
   belongs_to :user
   belongs_to :coach

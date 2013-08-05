@@ -15,12 +15,12 @@ class WorksController < ApplicationController
 
   def create
     doc_info = create_google_doc
-    Rails.logger.info doc_info.data.inspect
     gd_client.invite_admins(doc_info.data["id"])
-    # save the work
-    # report any errors
-    #
-    render :text => doc_info.data.to_hash.inspect
+    @work = Work.new(params[:work])
+    @work.document_url = doc_info.data["alternate_link"]
+    @work.google_file_id = doc_info.data["id"]
+    @work.save
+    render :text => @work.inspect
   end
 
   def create_google_doc
