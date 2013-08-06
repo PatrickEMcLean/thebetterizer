@@ -23,7 +23,7 @@ class WorksController < ApplicationController
   end
 
   def create_google_doc
-    uploaded_file = params[:work][:temp_document]
+    uploaded_file = params[:work][:temp_document] || StringFile.new(params[:work][:temp_text])
     description = <<-description
       Audience: #{params[:work][:student_audience]}
       Desired Outcome: #{params[:work][:student_desired_outcome]}
