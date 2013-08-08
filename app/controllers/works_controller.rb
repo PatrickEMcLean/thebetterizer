@@ -17,6 +17,7 @@ class WorksController < ApplicationController
     @work = Work.new(params[:work])
     @work.document_url = doc_info.data["alternate_link"]
     @work.google_file_id = doc_info.data["id"]
+    @work.status = :created_not_authorized
     @work.save
     flash[:success] = "Congratulations! You have uploaded work for us to do!"
     redirect_to work_path(@work.id)

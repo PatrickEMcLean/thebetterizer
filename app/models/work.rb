@@ -18,10 +18,27 @@ class Work < ActiveRecord::Base
     :youtube_url,
     :approved,
     :temp_text,
-    :temp_document
+    :temp_document,
+    :work_histories,
+    :work_histories_attributes
 
   belongs_to :user
   belongs_to :coach
+  has_many :work_histories, inverse_of: :work, dependent: :destroy
+
+  accepts_nested_attributes_for :work_histories
+
+  def self.for_user(user)
+    where(user_id: user.id)
+  end
+
+  def current_status
+    WorkHistory.where(work_id: id).order(:created_at).last
+  end
+
+  def status=(value)
+    work_histories << WorkHistory.new(status: value.to_sym)
+  end
 
 
 end
