@@ -4,5 +4,9 @@
     <%= render "form_student_fields", f: f, legend: "Student Questions", readonly: true %>
     <%= render "form_work_artifacts", f: f, legend: "Work Artifacts", readonly: false %>
     <%= render "form_coach_post_work_fields", f: f, legend: "Coach Questions", readonly: true %>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save Work</button>
+      <%= link_to "Back to Queue", works_path, class: "btn btn-danger" %>
+    </div>
   <% end %>
 </div>

@@ -7,6 +7,16 @@ class WorksController < ApplicationController
   def new
   end
 
+  def update
+    work = Work.find(params[:id])
+    if work.update_attributes(params[:work])
+      flash[:success] = "Work has been updated successfully"
+    else
+      flash[:error] = "There was an error updating the work."
+    end
+    redirect_to work_path(work)
+  end
+
   def show
     @work = Work.find(params[:id])
     render role_action_view[current_user.highest_role]["show"]
@@ -28,7 +38,8 @@ class WorksController < ApplicationController
   private
 
   def create_google_doc
-    uploaded_file = params[:work][:temp_document] || StringFile.new(params[:work][:temp_text])
+    uploaded_file = params[:work][:temp_document] ||
+      StringFile.new(params[:work][:temp_text])
     description = <<-description
       Audience: #{params[:work][:student_audience]}
       Desired Outcome: #{params[:work][:student_desired_outcome]}
