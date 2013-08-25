@@ -16,7 +16,12 @@ class User < ActiveRecord::Base
   end
 
   def has_role?(role_name)
-    (user.roles.map &:key).select { |k| k == role_name }
+    (roles.map &:key).select { |k| k == role_name }.size > 0
+  end
+
+  def highest_role
+    has_role?("admin") ? "admin" :
+      has_role?("coach") ? "coach" : "user"
   end
 
 end
