@@ -7,6 +7,11 @@ class WorksController < ApplicationController
   def new
   end
 
+  def show
+    @work = Work.find(params[:id])
+    render role_action_view[current_user.highest_role]["show"]
+  end
+
   def create
     doc_info = create_google_doc
     gd_client.invite_admins(doc_info.data["id"])
@@ -18,6 +23,8 @@ class WorksController < ApplicationController
     flash[:success] = "Congratulations! You've submitted work for us!"
     redirect_to work_path(@work.id)
   end
+
+  private
 
   def create_google_doc
     uploaded_file = params[:work][:temp_document] || StringFile.new(params[:work][:temp_text])
