@@ -1,11 +1,7 @@
 class WorksController < ApplicationController
   def index
-    # show work you have submitted or the work you are assigned.
-    text = ""
-    GoogleDriveClient.new(current_user).files.items.each do |f|
-      text += "#{f["id"]}<br/>"
-    end
-    render text: text
+    @works = role_action_scope[current_user.highest_role]["index"]
+    render role_action_view[current_user.highest_role]["index"]
   end
 
   def new
@@ -19,7 +15,7 @@ class WorksController < ApplicationController
     @work.google_file_id = doc_info.data["id"]
     @work.status = :created_not_authorized
     @work.save
-    flash[:success] = "Congratulations! You have uploaded work for us to do!"
+    flash[:success] = "Congratulations! You've submitted work for us!"
     redirect_to work_path(@work.id)
   end
 
@@ -35,5 +31,36 @@ class WorksController < ApplicationController
 
   def gd_client
     @gd_client ||= GoogleDriveClient.new(current_user)
+  end
+
+  def role_action_view
+    {
+      "admin" => {
+        "index" => "admin_index",
+        "show" => "admin_show"
+      },
+      "coach" => {
+        "index" => "coach_index",
+        "show" => "coach_show"
+      },
+      "user" => {
+        "index" => "index",
+        "show" => "show"
+      },
+    }
+  end
+
+  def role_action_scope
+    {
+      "admin" => {
+        "index" => Work.all
+      },
+      "coach" => {
+        "index" => Work.for_coach(current_user)
+      },
+      "user" => {
+        "index" => Work.for_user(current_user)
+      }
+    }
   end
 end
