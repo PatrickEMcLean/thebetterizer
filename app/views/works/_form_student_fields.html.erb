@@ -1,0 +1,15 @@
+<% readonly = false if local_assigns[:readonly].nil? %>
+<fieldset>
+  <% if legend %><legend><%= legend %></legend><% end %>
+  <label><%= f.label "Who are you writing this for?" %></label>
+  <%= f.text_field :student_audience, class: "span12", readonly: readonly %>
+
+  <label><%= f.label "What do you want them to think or do as a result?" %></label>
+  <%= f.text_area :student_desired_outcome, rows: 4, cols: 60 , class: "span12", readonly: readonly %>
+
+  <label><%= f.label "In the simplest words possible, what are you trying to say?" %></label>
+  <%= f.text_area :student_essence, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+
+  <label><%= f.label "Anything else?" %></label>
+  <%= f.text_area :student_comment, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+</fieldset>

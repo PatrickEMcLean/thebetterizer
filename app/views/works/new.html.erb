@@ -4,20 +4,7 @@
   <div class="span8">
   <% if current_user %>
     <%= form_for Work.new, multipart: true do |f| %>
-      <fieldset>
-        <legend>First a few questions</legend>
-            <label><%= f.label "Who are you writing this for?" %></label>
-            <%= f.text_field :student_audience, class: "span12" %>
-
-            <label><%= f.label "What do you want them to think or do as a result?" %></label>
-            <%= f.text_area :student_desired_outcome, rows: 4, cols: 60 , class: "span12" %>
-
-            <label><%= f.label "In the simplest words possible, what are you trying to say?" %></label>
-            <%= f.text_area :student_essence, rows: 4, cols: 60, class: "span12"  %>
-
-            <label><%= f.label "Anything else?" %></label>
-            <%= f.text_area :student_comment, rows: 4, cols: 60, class: "span12"  %>
-      </fieldset>
+      <%= render "form_student_fields", f: f, legend: "First, a few questions"  %>
       <fieldset>
         <legend>What are we betterizing?</legend>
         <label>A document you want to upload?</label>

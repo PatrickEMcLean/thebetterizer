@@ -1,0 +1,9 @@
+<fieldset>
+  <% if legend %><legend><%= legend %></legend><% end %>
+  <label><%= f.label "Google Document Location" %></label>
+  <%= link_to "Go to the google doc", f.object.document_url, class: "btn btn-info", target: "_blank" %>
+
+  <label><%= f.label "Youtube URL" %></label>
+  <%= f.text_field :youtube_url, class: "span12", readonly: readonly %>
+</fieldset>
+

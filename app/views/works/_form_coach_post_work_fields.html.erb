@@ -1,0 +1,22 @@
+<% readonly = false if local_assigns[:readonly].nil? %>
+<fieldset>
+  <% if legend %><legend><%= legend %></legend><% end %>
+  <label><%= f.label "What did you do?" %></label>
+  <%= f.text_field :coach_what_you_did, class: "span12", readonly: readonly %>
+
+  <label><%= f.label "How did you feel about it? (how do you like the outcome?)" %></label>
+  <%= f.text_area :coach_how_feel, rows: 4, cols: 60 , class: "span12", readonly: readonly %>
+
+  <label><%= f.label "What homework did you assign?" %></label>
+  <%= f.text_area :coach_homework, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+
+  <label><%= f.label "What went well?" %></label>
+  <%= f.text_area :coach_well, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+
+  <label><%= f.label "What went not so well?" %></label>
+  <%= f.text_area :coach_not_so_well, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+
+  <label><%= f.label "Additional Comments" %></label>
+  <%= f.text_area :coach_comment, rows: 4, cols: 60, class: "span12" , readonly: readonly %>
+</fieldset>
+

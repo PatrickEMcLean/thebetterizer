@@ -1,4 +1,8 @@
 <%= render "layouts/page_header", title: "Work" %>
 <div clas="row-fluid">
-  This is the admin view
+  <%= form_for @work do |f| %>
+    <%= render "form_student_fields", f: f, legend: "Student Questions", readonly: true %>
+    <%= render "form_work_artifacts", f: f, legend: "Work Artifacts", readonly: false %>
+    <%= render "form_coach_post_work_fields", f: f, legend: "Coach Questions", readonly: true %>
+  <% end %>
 </div>
