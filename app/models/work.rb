@@ -36,6 +36,10 @@ class Work < ActiveRecord::Base
     where(coach_id: user.id)
   end
 
+  def self.for_admin
+    includes(:work_histories, :user).all
+  end
+
   def current_status
     WorkHistory.where(work_id: id).order(:created_at).last
   end

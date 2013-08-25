@@ -16,6 +16,7 @@ class WorksController < ApplicationController
     doc_info = create_google_doc
     gd_client.invite_admins(doc_info.data["id"])
     @work = Work.new(params[:work])
+    @work.user_id = current_user.id
     @work.document_url = doc_info.data["alternate_link"]
     @work.google_file_id = doc_info.data["id"]
     @work.status = :created_not_authorized
@@ -60,7 +61,7 @@ class WorksController < ApplicationController
   def role_action_scope
     {
       "admin" => {
-        "index" => Work.all
+        "index" => Work.for_admin
       },
       "coach" => {
         "index" => Work.for_coach(current_user)

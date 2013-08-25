@@ -1,2 +1,25 @@
-this will show all work, with filters for status and other criteria<br/>
-this will also provide the mechanism for assigning work to coaches
+<%= render "layouts/page_header", title: "Work Queue" %>
+<div class="row-fluid">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>What they're tyring to Say</th>
+        <th>Date Submitted</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works.each do |w| %>
+        <tr>
+          <td><%= w.user.name %></td>
+          <td><%= w.student_essence %></td>
+          <td><%= w.created_at.strftime("%Y-%d-%m") %></td>
+          <td><%= w.work_histories.last.status %></td>
+          <td><%= link_to "edit", work_path(w), class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
