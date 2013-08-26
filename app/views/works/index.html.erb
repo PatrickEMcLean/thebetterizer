@@ -1,1 +1,26 @@
-displays the work you have with us and its status.
+<%= render "layouts/page_header", title: "Your Work" %>
+<div class="row-fluid">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Who you're talking to</th>
+        <th>What you're tyring to Say</th>
+        <th>Date Submitted</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @works.each do |w| %>
+        <tr>
+          <td><%= w.student_audience %></td>
+          <td><%= w.student_essence %></td>
+          <td><%= w.created_at.strftime("%Y-%d-%m") %></td>
+          <td><%= Status.labelize(w.work_histories.last.status) %></td>
+          <td><%= link_to "View", work_path(w), class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
