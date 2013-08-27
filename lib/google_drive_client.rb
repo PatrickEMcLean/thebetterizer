@@ -61,7 +61,7 @@ class GoogleDriveClient
   end
 
   def invite_admins(file_id)
-    Rails.configuration.admin_emails.each do |email|
+    User.includes(:roles).where("roles.key" => "admin").map {|u| u.email}.each do |email|
       self.insert_permission(file_id, email, "writer")
     end
   end
