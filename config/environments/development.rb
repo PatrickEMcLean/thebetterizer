@@ -35,4 +35,6 @@ Betterizer::Application.configure do
   # Expands the lines which load the assets
   # config.assets.debug = true
   config.service_account_id = "960016567704-ilq2d2fl27v584ekmd0qddpdt2f6oknp@developer.gserviceaccount.com"
+  config.google_api_client_id = "960016567704.apps.googleusercontent.com"
+  config.google_api_secret = "BcRZQhFqzsKvootw-cH_VECA"
 end

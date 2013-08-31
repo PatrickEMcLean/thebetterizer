@@ -64,4 +64,8 @@ Betterizer::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  # TODO: CREATE NEW APPLICATION AND SERVICE ACCOUNT
+  config.service_account_id = "960016567704-ilq2d2fl27v584ekmd0qddpdt2f6oknp@developer.gserviceaccount.com"
+  config.google_api_client_id = "960016567704.apps.googleusercontent.com"
+  config.google_api_secret = "BcRZQhFqzsKvootw-cH_VECA"
 end
