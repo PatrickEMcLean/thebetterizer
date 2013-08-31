@@ -19,7 +19,7 @@ class WorksController < ApplicationController
 
   def show
     @work = Work.find(params[:id])
-    render role_action_view[current_user.highest_role]["show"]
+    render role_action_view[current_user.highest_role]["show"][@work.current_status.status]
   end
 
   def create
@@ -56,17 +56,49 @@ class WorksController < ApplicationController
     {
       "admin" => {
         "index" => "admin_index",
-        "show" => "admin_show"
+        "show" => {
+          "created_not_authorized"    => "admin_show",
+          "authorized"                => "admin_show",
+          "in_progress"               => "admin_show",
+          "coaching_complete"         => "admin_show",
+          "approved"                  => "admin_show",
+          "payment_pending"           => "admin_show",
+          "paid"                      => "admin_show",
+          "delivered"                 => "admin_show",
+          "student_feedback complete" => "admin_show",
+          "complete"                  => "admin_show"
+        }
       },
       "coach" => {
         "index" => "coach_index",
-        "show" => "coach_show"
+        "show" => {
+          "created_not_authorized"    => "coach_show",
+          "authorized"                => "coach_show",
+          "in_progress"               => "coach_show",
+          "coaching_complete"         => "coach_show",
+          "approved"                  => "coach_show",
+          "payment_pending"           => "coach_show",
+          "paid"                      => "coach_show",
+          "delivered"                 => "coach_show",
+          "student_feedback complete" => "coach_show",
+          "complete"                  => "coach_show"
+        }
       },
       "user" => {
         "index" => "index",
-        "show" => "show"
+        "show" => {
+          "created_not_authorized"    => "student_payment_form",
+          "authorized"                => "student_work_begun",
+          "in_progress"               => "student_work_begun",
+          "coaching_complete"         => "student_work_begun",
+          "approved"                  => "student_processing_payment",
+          "paid"                      => "student_processing_payment",
+          "delivered"                 => "student_feedback",
+          "student_feedback complete" => "student_show",
+          "complete"                  => "student_show"
+        }
       },
-    }
+    }.with_indifferent_access
   end
 
   def role_action_scope
@@ -82,4 +114,5 @@ class WorksController < ApplicationController
       }
     }
   end
+
 end

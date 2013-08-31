@@ -1,0 +1,20 @@
+<%= render "layouts/page_header", title: "Let's Get Started" %>
+<form action="" method="POST" id="payment-form">
+  <span class="payment-errors"></span>
+
+  <fieldset>
+    <label> <span>Card Number</span> </label>
+    <input type="text" size="20" data-stripe="number"/>
+
+    <label> <span>CVC</span> </label>
+    <input type="text" size="4" data-stripe="cvc"/>
+
+    <label>
+      <span>Expiration (MM/YYYY)</span>
+    </label>
+    <input type="text" size="2" data-stripe="exp-month"/>
+    <span> / </span>
+    <input type="text" size="4" data-stripe="exp-year"/>
+  </fieldset>
+  <button type="submit">Submit Payment</button>
+</form>

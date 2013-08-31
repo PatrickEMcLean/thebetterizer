@@ -5,7 +5,7 @@ gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'google-api-client'
-
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 
 # Gems used only for assets and not required
